@@ -349,10 +349,136 @@ background-color: #37cc8e;
 
 }
 
-#sm-banner button:hover{
+#sm-banner .banner-box:hover button{
   color: #37cc8e;
   background-color: #064127;
   transform: scale(1.05);
   border: 5px;
 }
 
+#banner3 .banner-box{
+
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: url(img/banner/b7.jpg);
+  min-width: 30%;
+  height: 30vh;
+  background-position: center;
+  background-size: cover;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  
+}
+#banner3 .banner-box2{
+  background-image: url(img/banner/b4.jpg);
+
+}
+
+#banner3 .banner-box3{
+  background-image: url(img/banner/b18.jpg);
+
+}
+#banner3{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0px 80px;
+
+}
+
+#banner3 h2{
+  color:white;
+  font-weight: 900;
+  font-size: 20px;
+
+}
+
+#banner3 h3{
+  color:rgb(130, 18, 18);
+  font-weight: 800;
+  font-size: 22px;
+
+}
+
+#newsletter{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  background-image: url(img/banner/b14.png);
+  background-repeat: no-repeat;
+  background-position: 20% 30%;
+  background-color: #441489;
+
+}
+
+#newsletter h4{
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+}
+#newsletter p{
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(179, 165, 196);
+}
+
+#newsletter p span{
+  color:red;
+}
+
+#newsletter input{
+  height: 3rem;
+  padding: 0 1.25em;
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  outline: none;
+
+}
+
+#newsletter button{
+
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 30px;
+  color: #3d4141;
+  background-color:#4f7361;
+  cursor:pointer;
+  border: 1px solid white;
+  outline: none;
+  transition: 0.2s;
+  white-space: nowrap;
+  border-radius: 2px;
+    
+}
+
+#newsletter .from{
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+}
+
+
+footer{
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+}
+
+footer .col{
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+
+
+}
