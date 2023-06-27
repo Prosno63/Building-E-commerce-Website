@@ -236,3 +236,123 @@ background-color: #37cc8e;
   font-size: 12px;
 
 }
+
+#banner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url(img/banner/b2.jpg);
+  width: 100%;
+  height: 40vh;
+  background-position: center;
+  background-size: cover;
+}
+
+#banner h4{
+  color: white;
+  font-size: 16px;
+}
+
+#banner h2{
+  color: white;
+  font-size: 50px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+
+}
+
+#banner h2 span{
+  color: #840e0e;
+}
+
+#banner button{
+
+  font-size: 14px;
+  font-weight: 600;
+  padding: 15px 30px;
+  color: #222;
+  background-color: aliceblue;
+  cursor:pointer;
+  border-radius:4px ;
+  border: none;
+  outline: none;
+  transition: 0.2s;
+
+
+}
+
+#banner button:hover{
+
+  transform: scale(1.05);
+
+}
+
+#sm-banner .banner-box{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: url(img/banner/b17.jpg);
+  min-width: 580px;
+  height: 40vh;
+  background-position: center;
+  background-size: cover;
+  padding-left: 30px;
+}
+
+#sm-banner .banner-box2{
+  background-image: url(img/banner/b10.jpg);
+
+}
+
+#sm-banner{
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+
+}
+
+#sm-banner h4{
+  color: white;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+#sm-banner h2{
+  color: white;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+#sm-banner span{
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding-bottom: 15px;
+}
+#sm-banner button{
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 15px 30px;
+  color: #3d4141;
+  background-color:transparent;
+  cursor:pointer;
+  border: 1px solid white;
+  outline: none;
+  transition: 0.2s;
+
+
+}
+
+#sm-banner button:hover{
+  color: #37cc8e;
+  background-color: #064127;
+  transform: scale(1.05);
+  border: 5px;
+}
+
