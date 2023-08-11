@@ -465,6 +465,8 @@ footer .icon{
 
 }
 
+
+
 .page-header-blog h2, p{
   color: white;
 }
@@ -496,3 +498,25 @@ footer .icon{
   color:#4f7361;
 }
 
+
+/*.......about page.........*/
+.page-header-about{
+  background-image: url(img/about/banner.png);
+  width: 100%;
+  height: 40vh;
+  block-size: cover;
+  text-align: center;
+  padding-top: 60px;
+  justify-content: center;
+
+}
+.page-header-contact{
+  background-image: url(img/banner/b1.jpg);
+  width: 100%;
+  height: 40vh;
+  block-size: cover;
+  text-align: center;
+  padding-top: 60px;
+  justify-content: center;
+
+}
