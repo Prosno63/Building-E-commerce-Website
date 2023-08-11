@@ -80,26 +80,6 @@ body {
 
 }
 
-#hero button{
-  background-image: url(img/button.png);
-  background-color: transparent;
-  color: #37cc8e;
-  border: 0;
-  padding-top: 14px 80px 14px 65px;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 15px;
-   
-}
-
-#feature{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-} 
-
 #feature .fe-box{
   width: 180px;
   text-align: center;
@@ -312,6 +292,7 @@ background-color: #37cc8e;
   background-image: url(img/banner/b7.jpg);
   min-width: 30%;
   height: 30vh;
+  min-width: 27vw;
   background-position: center;
   background-size: cover;
   padding-left: 20px;
@@ -324,7 +305,7 @@ background-color: #37cc8e;
 }
 
 #banner3 .banner-box3{
-  background-image: url(img/banner/b18.jpg);
+  background-image: url(img/banner/b19.jpg);
 
 }
 #banner3{
