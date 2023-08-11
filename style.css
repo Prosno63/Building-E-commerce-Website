@@ -6,6 +6,10 @@
   font-family: "Spartan", sans-serif;
 }
 
+body{
+  scroll-behavior: smooth;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -54,60 +58,8 @@ body {
 
 /*header Start*/
 
-#header{
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 80px;
-  background: #96b7a9;
-  box-shadow: 0px 5px 15px rgb(0,0,0,0.06);
-  position:sticky;
-  top: 0;
-  left: 0;
 
 
-}
-
-#navbar{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-}
-
-#navbar li{
-  list-style: none;
-  padding: 0 20px;
-  position: relative;
-}
-
-#navbar li a{
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 600;
-  color: #465b52;
-  transition: 0.3s ease;
-}
-
-#navbar li a:hover,
-#navbar li a.active
-{
- color:#064127; 
-
-}
-
-#navbar li a.active::after,
-#navbar li a:hover::after{
-  content:"";
-  width: 50%;
-  height: 2px;
-  background: #088178;
-  position: absolute;
-  bottom: -5px;
-  left: 20px;
-
-}
 
 /*HomePage*/
 
@@ -115,13 +67,7 @@ body {
   background-image: url("img/hero4.png");
   height: 90vh;
   width: 100%;
-  background-position: top 50% right 0%;
-  background-size:cover;
-  padding: 0px 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+
 
 }
 
@@ -178,7 +124,7 @@ body {
   line-height: 1;
   border-radius: 4px;
   color:#4f7361;
-  background-color: #37cc8e;
+
 
 }
 
@@ -191,15 +137,15 @@ background-color: #37cc8e;
 }
 
 #feature .fe-box:nth-child(4){
-  background-color: #441489;
+  background-color:#96b7a9;
 }
 
 #feature .fe-box:nth-child(5){
-  background-color: #840e0e;
+  background-color:burlywood;
 }
 
 #feature .fe-box:nth-child(6){
-  background-color: #675953;
+  background-color:darkgrey;
 }
 
 #product1{
