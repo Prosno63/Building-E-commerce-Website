@@ -138,9 +138,7 @@ background-color: #37cc8e;
   flex-wrap: wrap;
 }
 #product1 .pro{
-  width: 25%;
-  min-width: 250px;
-  padding: 10px 10px;
+
   cursor: pointer;
 
 }
