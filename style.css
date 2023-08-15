@@ -83,7 +83,7 @@ body {
   box-shadow: 30px 20px 50px rgb(0,0,0,0.2);
   border-radius: 8px;
   margin: 15px 0;
-  background-color:burlywood;
+  background-image: linear-gradient( gray, white);
 }
 #feature .fe-box:hover{
   box-shadow: 10px 20px 54px rgba(26, 118, 209, 0.1);
@@ -100,7 +100,7 @@ body {
   line-height: 1;
   border-radius: 4px;
   color:#4f7361;
-  background: linear-gradient(to right, #F3E5AB 0%, white 45%, #E4D69C 100%);
+  
 
 
 }
