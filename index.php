@@ -1,3 +1,14 @@
+<?php 
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+	$user_data = check_login($con);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,21 +17,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.css" rel="stylesheet" />
-
-
     <title>Cara Fashion</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="shortcut icon" href="img/fiv/1.ico" type="image/x-icon">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <section class="sticky top-0 z-10">
 
 
@@ -44,11 +50,11 @@
                         <div class="px-4 py-3">
                             <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
                             <span
-                                class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                                class="block text-sm  text-gray-500 truncate dark:text-gray-400"><?php echo $user_data['user_email'];?></span>
                         </div>
                         <ul class="py-2" aria-labelledby="user-menu-button">
                             <li>
-                                <a href="#"
+                                <a href="dash.php"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
                             </li>
                             <li>
@@ -56,12 +62,12 @@
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
                             </li>
                             <li>
-                                <a href="cart.html"
+                                <a href="cart.php"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Carted
                                     Items</a>
                             </li>
                             <li>
-                                <a href="login.html"
+                                <a href="login.php"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
                                     out</a>
                             </li>
@@ -82,24 +88,24 @@
                     <ul
                         class=" flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg lg: bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <li>
-                            <a href="index.html"
-                                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
-                        </li>
-                        <li>
-                            <a href="shop.html"
+                            <a href="index.php"
                                 class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                                aria-current="page">Shop</a>
+                                aria-current="page">Home</a>
                         </li>
                         <li>
-                            <a href="blog.html"
+                            <a href="shop.php"
+                                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Shop</a>
+                        </li>
+                        <li>
+                            <a href="blog.php"
                                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
                         </li>
                         <li>
-                            <a href="about.html"
+                            <a href="about.php"
                                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
                         </li>
                         <li>
-                            <a href="contact.html"
+                            <a href="contact.php"
                                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
                         </li>
                     </ul>
@@ -109,23 +115,50 @@
 
 
     </section>
-    <section class="page-header">
 
 
-        <h2 class="text-xl lg:text-5xl font-bold">#StayHome</h2>
+    <section class="relative bg-cover lg:relative lg:bg-cover lg:bg-center lg:bg-no-repeat" id="hero">
+        <div
+            class="absolute inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l">
+        </div>
 
-        <p class="text-base pl-2 pr-2 lg:text-xl font-medium">Save more with coupons and up to 70% off!</p>
+        <div class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
+            <div class="max-w-xl text-start ltr:sm:text-left rtl:sm:text-right">
+                <h1 class="text-3xl font-extrabold sm:text-5xl">
+                    Let us find you
 
+                    <strong class="block font-extrabold text-rose-700 mt-3">
+                        The Best OutFit For You
+                    </strong>
+                </h1>
 
+                <p class="mt-4 max-w-lg sm:text-xl/relaxed text-start text-black">
+                    Welcome to Cara Fashion, your ultimate destination for exquisite fashion and style. Step into a
+                    world where elegance meets innovation, where each outfit tells a unique story. Discover a curated
+                    collection that redefines trends and celebrates individuality.
+                </p>
+
+                <div class="mt-8 flex flex-wrap gap-4 text-center">
+                    <a href="#"
+                        class="block w-full rounded bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
+                        Shop Now
+                    </a>
+
+                    <a href="#"
+                        class="block w-full rounded bg-gradient-to-r from-purple-700 via-purple-600 to-purple-500 px-12 py-3 text-sm font-medium text-white shadow hover:text-white focus:outline-none focus:ring active:text-rose-500 sm:w-auto">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
-
 
     <section class=" section-p1">
         <div class="bg-white py-6 sm:py-4 lg:py-8">
             <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
                 <!-- text - start -->
                 <div class="mb-10 md:mb-16">
-                    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Shirts Collection
+                    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Features Products
                     </h2>
 
                     <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Summer Collection New
@@ -139,7 +172,7 @@
                         <div class="pro">
                             <img class="rounded-xl" src="img/products/f1.jpg" alt="">
                             <div>
-                                <span class="text-sm text-start">Holago</span>
+                                <span class="text-sm text-start">Mad Mart</span>
                                 <h5 class="text-base">Half Sleeve shirt</h5>
                                 <div class="star">
                                     <i class="fas fa-star"></i>
@@ -148,7 +181,7 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <h4>$35</h4>
+                                <h4>$25</h4>
 
                             </div>
                             <button type="button"
@@ -160,9 +193,195 @@
                     <!-- product - start -->
                     <div>
                         <div class="pro">
-                            <img class="rounded-xl" src="img/products/n5.jpg" alt="">
+                            <img class="rounded-xl" src="img/products/f2.jpg" alt="">
                             <div>
-                                <span class="text-sm text-start">Holago</span>
+                                <span class="text-sm text-start">Mad Mart</span>
+                                <h5 class="text-base">Half Sleeve shirt</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$25</h4>
+
+                            </div>
+                            <button type="button"
+                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+                        </div>
+                    </div>
+                    <!-- product - end -->
+
+                    <!-- product - start -->
+                    <div>
+                        <div class="pro">
+                            <img class="rounded-xl" src="img/products/f3.jpg" alt="">
+                            <div>
+                                <span class="text-sm text-start">Mad Mart</span>
+                                <h5 class="text-base">Half Sleeve shirt</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$25</h4>
+
+                            </div>
+                            <button type="button"
+                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+                        </div>
+                    </div>
+                    <!-- product - end -->
+
+                    <!-- product - start -->
+                    <div>
+                        <div class="pro">
+                            <img class="rounded-xl" src="img/products/f4.jpg" alt="">
+                            <div>
+                                <span class="text-sm text-start">Mad Mart</span>
+                                <h5 class="text-base">Half Sleeve shirt</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$25</h4>
+
+                            </div>
+                            <button type="button"
+                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+                        </div>
+                    </div>
+                    <!-- product - end -->
+                    <div>
+                        <div class="pro">
+                            <img class="rounded-xl" src="img/products/f1.jpg" alt="">
+                            <div>
+                                <span class="text-sm text-start">Mad Mart</span>
+                                <h5 class="text-base">Half Sleeve shirt</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$25</h4>
+
+                            </div>
+                            <button type="button"
+                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+                        </div>
+                    </div>
+                    <!-- product - end -->
+
+                    <!-- product - start -->
+                    <div>
+                        <div class="pro">
+                            <img class="rounded-xl" src="img/products/f2.jpg" alt="">
+                            <div>
+                                <span class="text-sm text-start">Mad Mart</span>
+                                <h5 class="text-base">Half Sleeve shirt</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$25</h4>
+
+                            </div>
+                            <button type="button"
+                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+                        </div>
+                    </div>
+                    <!-- product - end -->
+
+                    <!-- product - start -->
+                    <div>
+                        <div class="pro">
+                            <img class="rounded-xl" src="img/products/f3.jpg" alt="">
+                            <div>
+                                <span class="text-sm text-start">Mad Mart</span>
+                                <h5 class="text-base">Half Sleeve shirt</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$25</h4>
+
+                            </div>
+                            <button type="button"
+                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+                        </div>
+                    </div>
+                    <!-- product - end -->
+
+                    <!-- product - start -->
+                    <div>
+                        <div class="pro">
+                            <img class="rounded-xl" src="img/products/f4.jpg" alt="">
+                            <div>
+                                <span class="text-sm text-start">Mad Mart</span>
+                                <h5 class="text-base">Half Sleeve shirt</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$25</h4>
+
+                            </div>
+                            <button type="button"
+                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="banner" class="section-m1">
+
+        <h3 class="sm:text-2xl sm:mt-4 lg:text-5xl text-white mb-10 font-bold">Repair Survices</h3>
+        <h5 class="text-base mb-3 text-white lg:text-4xl">Up to <span style="color: brown;">70% off</span> On All
+            T-shirts & Accessories</h5>
+        <button class="mb-8 lg:none">Explore More</button>
+
+    </section>
+
+
+    <section class="section-p1">
+        <div class="bg-white py-6 sm:py-4 lg:py-8">
+            <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+                <!-- text - start -->
+                <div class="mb-10 md:mb-16">
+                    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">New Arrival
+                    </h2>
+
+                    <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Summer Collection New
+                        Mordern Design</p>
+                </div>
+                <!-- text - end -->
+
+                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    <!-- product - start -->
+                    <div>
+                        <div class="pro">
+                            <img class="rounded-xl" src="img/products/n1.jpg" alt="">
+                            <div>
+                                <span class="text-sm text-start">Cara Fashion</span>
                                 <h5 class="text-base">Full Sleeve shirt</h5>
                                 <div class="star">
                                     <i class="fas fa-star"></i>
@@ -183,10 +402,10 @@
                     <!-- product - start -->
                     <div>
                         <div class="pro">
-                            <img class="rounded-xl" src="img/products/f3.jpg" alt="">
+                            <img class="rounded-xl" src="img/products/n2.jpg" alt="">
                             <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Half Sleeve shirt</h5>
+                                <span class="text-sm text-start">Cara Fashion</span>
+                                <h5 class="text-base">Full Sleeve shirt</h5>
                                 <div class="star">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -194,7 +413,7 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <h4>$35</h4>
+                                <h4>$45</h4>
 
                             </div>
                             <button type="button"
@@ -206,9 +425,32 @@
                     <!-- product - start -->
                     <div>
                         <div class="pro">
-                            <img class="rounded-xl" src="img/products/n8.jpg" alt="">
+                            <img class="rounded-xl" src="img/products/n3.jpg" alt="">
                             <div>
-                                <span class="text-sm text-start">Holago</span>
+                                <span class="text-sm text-start">Cara Fashion</span>
+                                <h5 class="text-base">Full Sleeve shirt</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$45</h4>
+
+                            </div>
+                            <button type="button"
+                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+                        </div>
+                    </div>
+                    <!-- product - end -->
+
+                    <!-- product - start -->
+                    <div>
+                        <div class="pro">
+                            <img class="rounded-xl" src="img/products/n4.jpg" alt="">
+                            <div>
+                                <span class="text-sm text-start">Cara Fashion</span>
                                 <h5 class="text-base">Half Sleeve shirt</h5>
                                 <div class="star">
                                     <i class="fas fa-star"></i>
@@ -227,10 +469,10 @@
                     <!-- product - end -->
                     <div>
                         <div class="pro">
-                            <img class="rounded-xl" src="img/products/f1.jpg" alt="">
+                            <img class="rounded-xl" src="img/products/n5.jpg" alt="">
                             <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Half Sleeve shirt</h5>
+                                <span class="text-sm text-start">Mad Mart</span>
+                                <h5 class="text-base">Full Sleeve shirt</h5>
                                 <div class="star">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -238,7 +480,30 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <h4>$35</h4>
+                                <h4>$38</h4>
+
+                            </div>
+                            <button type="button"
+                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+                        </div>
+                    </div>
+                    <!-- product - end -->
+
+                    <!-- product - start -->
+                    <div>
+                        <div class="pro">
+                            <img class="rounded-xl" src="img/products/n6.jpg" alt="">
+                            <div>
+                                <span class="text-sm text-start">Cara Fashion</span>
+                                <h5 class="text-base">Two Quater Pants</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$19</h4>
 
                             </div>
                             <button type="button"
@@ -252,7 +517,7 @@
                         <div class="pro">
                             <img class="rounded-xl" src="img/products/n7.jpg" alt="">
                             <div>
-                                <span class="text-sm text-start">Holago</span>
+                                <span class="text-sm text-start">Cara Fashion</span>
                                 <h5 class="text-base">Full Sleeve shirt</h5>
                                 <div class="star">
                                     <i class="fas fa-star"></i>
@@ -273,32 +538,9 @@
                     <!-- product - start -->
                     <div>
                         <div class="pro">
-                            <img class="rounded-xl" src="img/products/f3.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Half Sleeve shirt</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
                             <img class="rounded-xl" src="img/products/n8.jpg" alt="">
                             <div>
-                                <span class="text-sm text-start">Holago</span>
+                                <span class="text-sm text-start">Cara Fashion</span>
                                 <h5 class="text-base">Half Sleeve shirt</h5>
                                 <div class="star">
                                     <i class="fas fa-star"></i>
@@ -307,7 +549,7 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <h4>$35</h4>
+                                <h4>$38</h4>
 
                             </div>
                             <button type="button"
@@ -319,619 +561,148 @@
         </div>
     </section>
 
-
-    <section class=" section-p1">
-        <div class="bg-white py-6 sm:py-4 lg:py-8">
+    <section class="none lg:section-p1 mb-8">
+        <div class="bg-white sm:py-4 lg:py-8">
             <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
                 <!-- text - start -->
-                <div class="mb-10 md:mb-16">
-                    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Shoes Collection
-                    </h2>
+                <div class="mb-10 mt-4 md:mb-16">
+                    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Popular Items</h2>
 
-                    <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Summer Collection New
-                        Modern Design</p>
+                    <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Customers Favorite.</p>
                 </div>
                 <!-- text - end -->
 
                 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     <!-- product - start -->
                     <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/SF05..jpg" alt="">
-                            <div>
-                                <div>
-                                    <span class="text-sm text-start">Addidas</span>
-                                    <h5 class="text-base">Sneakers</h5>
-                                    <div class="star">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <h4>$75</h4>
+                        <a href="#" class="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
+                                loading="lazy" alt="Photo by Austin Wade"
+                                class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
-                                </div>
+                            <span
+                                class="absolute left-0 top-3 rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">-50%</span>
+                        </a>
 
+                        <div class="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
+                            <div class="flex flex-col">
+                                <a href="#"
+                                    class="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg">Fancy
+                                    Outfit</a>
+                                <span class="text-sm text-gray-500 lg:text-base">by Fancy Brand</span>
                             </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+
+                            <div class="flex flex-col items-end">
+                                <span class="font-bold text-gray-600 lg:text-lg">$19.99</span>
+                                <span class="text-sm text-red-500 line-through">$39.99</span>
+                            </div>
                         </div>
                     </div>
                     <!-- product - end -->
 
                     <!-- product - start -->
                     <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/SF06.jpg" alt="">
-                            <div>
-                                <div>
-                                    <span class="text-sm text-start">Nike</span>
-                                    <h5 class="text-base">Sneakers</h5>
-                                    <div class="star">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <h4>$75</h4>
+                        <a href="#" class="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1523359346063-d879354c0ea5?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
+                                loading="lazy" alt="Photo by Nick Karvounis"
+                                class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                        </a>
 
-                                </div>
+                        <div class="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
+                            <div class="flex flex-col">
+                                <a href="#"
+                                    class="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg">Cool
+                                    Outfit</a>
+                                <span class="text-sm text-gray-500 lg:text-base">by Cool Brand</span>
                             </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+
+                            <div class="flex flex-col items-end">
+                                <span class="font-bold text-gray-600 lg:text-lg">$29.99</span>
+                            </div>
                         </div>
                     </div>
                     <!-- product - end -->
 
                     <!-- product - start -->
                     <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/SF07.jpg" alt="">
-                            <div>
-                                <div>
-                                    <span class="text-sm text-start">Puma</span>
-                                    <h5 class="text-base">FootWear</h5>
-                                    <div class="star">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <h4>$75</h4>
+                        <a href="#" class="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1548286978-f218023f8d18?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
+                                loading="lazy" alt="Photo by Austin Wade"
+                                class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                        </a>
 
-                                </div>
+                        <div class="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
+                            <div class="flex flex-col">
+                                <a href="#"
+                                    class="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg">Nice
+                                    Outfit</a>
+                                <span class="text-sm text-gray-500 lg:text-base">by Nice Brand</span>
                             </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+
+                            <div class="flex flex-col items-end">
+                                <span class="font-bold text-gray-600 lg:text-lg">$35.00</span>
+                            </div>
                         </div>
                     </div>
                     <!-- product - end -->
 
                     <!-- product - start -->
                     <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/SF08.jpg" alt="">
-                            <div>
-                                <div>
-                                    <span class="text-sm text-start">CAT</span>
-                                    <h5 class="text-base">FootWear</h5>
-                                    <div class="star">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <h4>$75</h4>
+                        <a href="#" class="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1566207274740-0f8cf6b7d5a5?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
+                                loading="lazy" alt="Photo by Vladimir Fedotov"
+                                class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                        </a>
 
-                                </div>
+                        <div class="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
+                            <div class="flex flex-col">
+                                <a href="#"
+                                    class="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg">Lavish
+                                    Outfit</a>
+                                <span class="text-sm text-gray-500 lg:text-base">by Lavish Brand</span>
                             </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+
+                            <div class="flex flex-col items-end">
+                                <span class="font-bold text-gray-600 lg:text-lg">$49.99</span>
+                            </div>
                         </div>
                     </div>
                     <!-- product - end -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/SF01.jpg" alt="">
-                            <div>
-                                <div>
-                                    <span class="text-sm text-start">CAT</span>
-                                    <h5 class="text-base">Sneakers</h5>
-                                    <div class="star">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <h4>$75</h4>
-
-                                </div>
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/SF2.jpg" alt="">
-                            <div>
-                                <div>
-                                    <span class="text-sm text-start">Addidas</span>
-                                    <h5 class="text-base">Sneakers</h5>
-                                    <div class="star">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <h4>$75</h4>
-
-                                </div>
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/SF03.jpg" alt="">
-                            <div>
-                                <div>
-                                    <span class="text-sm text-start">Addidas</span>
-                                    <h5 class="text-base">Sneakers</h5>
-                                    <div class="star">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <h4>$75</h4>
-
-                                </div>
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/SF04.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">CAT</span>
-                                <h5 class="text-base">FootWear</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$75</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class=" section-p1">
-        <div class="bg-white py-6 sm:py-4 lg:py-8">
-            <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-                <!-- text - start -->
-                <div class="mb-10 md:mb-16">
-                    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Ladies Hand Bag
-                        Collection
-                    </h2>
+    <h2 class="text-2xl sm:font-bold lg:text-3xl font-bold text-center mb-4">Upcoming Products</h2>
+    <p class="text-xl lg:text-2xl text-black text-center mb-8">Something Yet To Explore</p>
 
-                    <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">New
-                        Modern Design</p>
-                </div>
-                <!-- text - end -->
+    <section class="grid gap-4 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3" id="banner3">
+        <div class="banner-box rounded-xl">
 
-                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/bags/2.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Leather Bag</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
+            <h4 class="text-white font-extrabold lg:mb-2">SEASONAL SALE</h4>
+            <h4 class="text-red-900 mr-2 font-bold sm:text-xl lg:text-2xl">Winter Collection 50% off</h4>
 
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
 
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/bags/14.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Leather Bag</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/bags/4.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Leather Bag</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/bags/13.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Leather Bag</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/bags/12.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Leather Bag</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/bags/10.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Leather Bag</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/bags/9.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Leather Bag</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/bags/4.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Leather Bag</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+        <div class="banner-box banner-box2 rounded-xl">
+
+            <h4 class="text-white font-extrabold lg:mb-2">Winter COLLECTION</h4>
+            <h4 class="text-red-900 mr-3 font-bold sm:text-xl lg:text-2xl">Winter 2022</h3>
+
+
+        </div>
+
+        <div class="banner-box banner-box3 rounded-xl">
+
+
+            <h4 class="text-white font-extrabold lg:mb-2">NEW FOOTWARE COLLECTION</h4>
+            <h4 class="text-red-900 mr-3 font-bold sm:text-xl lg:text-2xl">Spring/Summer 2023</h3>
+
+
+        </div>
+
     </section>
 
-    <section class=" section-p1">
-        <div class="bg-white py-6 sm:py-4 lg:py-8">
-            <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-                <!-- text - start -->
-                <div class="mb-10 md:mb-16">
-                    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Kid's Collection
-                    </h2>
-
-                    <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Summer Collection New
-                        Modern Design</p>
-                </div>
-                <!-- text - end -->
-
-                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/K09.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Shorts</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/K2.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Frock</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/K3.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Frock</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/K4.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">T-shirt</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/K5.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Frock</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/K6.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Frock</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/K7.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Frock</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                    <!-- product - end -->
-
-                    <!-- product - start -->
-                    <div>
-                        <div class="pro">
-                            <img class="rounded-xl" src="img/products/K8.jpg" alt="">
-                            <div>
-                                <span class="text-sm text-start">Holago</span>
-                                <h5 class="text-base">Frock</h5>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4>$35</h4>
-
-                            </div>
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section>
         <div class="bg-white py-6 sm:py-8 lg:py-12">
@@ -964,6 +735,8 @@
             </div>
         </div>
     </section>
+
+
 
     <footer class="bg-gray-100">
         <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
@@ -1074,7 +847,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
 
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
