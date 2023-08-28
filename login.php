@@ -31,9 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			}
 		}
 
-		echo "wrong username or password!";
+		$message = "wrong username or password!";
+		echo "<script>alert('$message');</script>";
 	} else {
-		echo "wrong username or password!";
+	
+		$message = "wrong username or password!";
+		echo "<script>alert('$message');</script>";
 	}
 }
 

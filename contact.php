@@ -1,11 +1,31 @@
-<?php 
+<?php
 session_start();
 
-	include("connection.php");
-	include("functions.php");
+include("connection.php");
+include("functions.php");
 
 	$user_data = check_login($con);
 
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	//something was posted
+    $user_name = $_POST['user_name'];
+	$user_email = $_POST['user_email'];
+	$complain = $_POST['complain'];
+
+	if (!empty($user_name) && !is_numeric($user_email) && !empty($complain)){
+
+		//save to database
+		$query = "insert into messages (user_name,user_email,complain) values ('$user_name','$user_email','$complain')";
+
+		mysqli_query($con, $query);
+
+		header("Location: contact.php");
+		die;
+	} else {
+		echo "Please enter some valid information!";
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -349,20 +369,20 @@ session_start();
                         </p>
                     </div>
                 </div>
-                <form novalidate="" class="flex flex-col py-6 space-y-6 md:py-0 md:px-6">
+                <form novalidate="" class="flex flex-col py-6 space-y-6 md:py-0 md:px-6" method="post">
                     <label class="block">
                         <span class="mb-1">Full name</span>
-                        <input type="text" placeholder="Your name" class="block w-full rounded-md shadow-sm focus:ring focus:ri focus:ri dark:bg-gray-800">
+                        <input type="text" placeholder="Your name" name="user_name" class="block w-full rounded-md shadow-sm focus:ring focus:ri focus:ri dark:bg-gray-800">
                     </label>
                     <label class="block">
                         <span class="mb-1">Email address</span>
-                        <input type="email" placeholder="Your Email" class="block w-full rounded-md shadow-sm focus:ring focus:ri focus:ri dark:bg-gray-800">
+                        <input type="email" placeholder="Your Email" name="user_email" class="block w-full rounded-md shadow-sm focus:ring focus:ri focus:ri dark:bg-gray-800">
                     </label>
                     <label class="block">
                         <span class="mb-1">Message</span>
-                        <textarea rows="3" class="block w-full rounded-md focus:ring focus:ri focus:ri dark:bg-gray-800"></textarea>
+                        <textarea rows="3" name="complain" class="block w-full rounded-md focus:ring focus:ri focus:ri dark:bg-gray-800"></textarea>
                     </label>
-                    <button type="button" class="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ri bg-green-400 focus:ri hover:ri">Submit</button>
+                    <button type="submit" class="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ri bg-green-400 focus:ri hover:ri">Submit</button>
                 </form>
             </div>
         </section>
