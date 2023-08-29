@@ -128,7 +128,7 @@ session_start();
                     <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Your Cart</h2>
                 </div>
 
-                <div class="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
+                <div class="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6" id="EntryCart" >
                     <!-- product - start -->
                     <div class="flex flex-wrap gap-x-4 overflow-hidden rounded-lg border sm:gap-y-4 lg:gap-6">
                         <a href="#" class="group relative block h-48 w-32 overflow-hidden bg-gray-100 sm:h-56 sm:w-40">
@@ -726,6 +726,7 @@ session_start();
 
 
     <script src="script.js"></script>
+    <script src="cart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
 </body>
 

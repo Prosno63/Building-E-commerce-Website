@@ -170,10 +170,10 @@ session_start();
                     <!-- product - start -->
                     <div>
                         <div class="pro">
-                            <img class="rounded-xl" src="img/products/f1.jpg" alt="">
+                            <img class="rounded-xl" src="img/products/f1.jpg" alt="" id="pro01_img">
                             <div>
                                 <span class="text-sm text-start">Mad Mart</span>
-                                <h5 class="text-base">Half Sleeve shirt</h5>
+                                <h5 class="text-base" id="pro01_name" >Half Sleeve shirt</h5>
                                 <div class="star">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -181,11 +181,11 @@ session_start();
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <h4>$25</h4>
+                                <h4 id="pro01_price" >$25</h4>
 
                             </div>
                             <button type="button"
-                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6">Cart</button>
+                                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-end mr-1 mt-1 mb-6" onclick="cardClick1()">Cart</button>
                         </div>
                     </div>
                     <!-- product - end -->
@@ -849,6 +849,7 @@ session_start();
 
 
     <script src="script.js"></script>
+    <script src="cart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
 </body>
 
