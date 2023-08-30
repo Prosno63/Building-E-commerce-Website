@@ -1,10 +1,10 @@
-<?php 
+<?php
 session_start();
 
-	include("connection.php");
-	include("functions.php");
+include("connection.php");
+include("functions.php");
 
-	$user_data = check_login($con);
+$user_data = check_login($con);
 
 ?>
 
@@ -50,9 +50,10 @@ session_start();
                     <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                         id="user-dropdown">
                         <div class="px-4 py-3">
-                            <span class="block text-sm text-gray-900 dark:text-white">UserID:<?php echo $user_data['user_id'];?></span>
-                            <span
-                                class="block text-sm  text-gray-500 truncate dark:text-gray-400"><?php echo $user_data['user_email'];?></span>
+                            <span class="block text-sm text-gray-900 dark:text-white">UserID:
+                                <?php echo $user_data['user_id']; ?>
+                            </span>
+                            <span class="block text-sm  text-gray-500 truncate dark:text-gray-400"><?php echo $user_data['user_email']; ?></span>
                         </div>
                         <ul class="py-2" aria-labelledby="user-menu-button">
                             <li>
@@ -128,7 +129,7 @@ session_start();
                     <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Your Cart</h2>
                 </div>
 
-                <div class="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6" id="EntryCart" >
+                <div class="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6" id="EntryCart">
                     <!-- product - start -->
                     <div class="flex flex-wrap gap-x-4 overflow-hidden rounded-lg border sm:gap-y-4 lg:gap-6">
                         <a href="#" class="group relative block h-48 w-32 overflow-hidden bg-gray-100 sm:h-56 sm:w-40">
@@ -333,8 +334,26 @@ session_start();
                     </div>
 
                     <button
-                        class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Buy Now</button>
+                        class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base"
+                        onclick="my_modal_1.showModal()">Buy Now</button>
+                    <dialog id="my_modal_1" class="modal">
+                        <form method="dialog" class="modal-box">
+                            <img class="ml-16 px-6 md:ml-32 md:px-6 lg:ml-32 lg:px-6" src="img/congo.png" alt="">
+                            <h3 class="font-bold text-lg text-center my-1">Congratulations!!</h3>
+                            <p class="pt-3 pb-1 text-center text-black">You order has been placed.</p>
+                            <p class="text-center text-black  pb-2">You Have to pay <span class="font-semibold text-lg">$134.98</span> </p>
+
+                            <div class="modal-action justify-center mt-2">
+                                <!-- if there is a button in form, it will close the modal -->
+                                <button class="btn bg-indigo-500  hover:bg-indigo-600 text-white " onclick="window.location.reload();">Go
+                                    Home</button>
+                            </div>
+                        </form>
+                    </dialog>
+
                 </div>
+
+
                 <!-- totals - end -->
             </div>
         </div>
@@ -342,7 +361,7 @@ session_start();
     </section>
 
 
-    <section class="text-center mb-6" >
+    <section class="text-center mb-6">
 
         <button type="button" data-modal-target="crypto-modal" data-modal-toggle="crypto-modal"
             class="text-gray-900 bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-8 py-3 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700">
@@ -351,8 +370,8 @@ session_start();
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
                 </path>
-            </svg> 
-             
+            </svg>
+
             <p class="text-white font-bold">Connect wallet</p>
         </button>
 
