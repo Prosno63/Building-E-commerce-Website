@@ -6,6 +6,26 @@ session_start();
 
 	$user_data = check_login($con);
 
+
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        //something was posted
+        $subscriber_email = $_POST['subscriber_email'];
+    
+        if (!empty($subscriber_email) && !is_numeric($subscriber_email)) {
+    
+            //save to database
+
+            $query = "insert into subscribers (subscriber_email) values ('$subscriber_email')";
+    
+            mysqli_query($con, $query);
+    
+            header("Location: index.php");
+            die;
+        } else {
+            echo "Please enter some valid information!";
+        }
+    }
+
 ?>
 
 
@@ -50,7 +70,7 @@ session_start();
                         <div class="px-4 py-3">
                             <span class="block text-sm text-gray-900 dark:text-white">UserID:<?php echo $user_data['user_id'];?></span>
                             <span
-                                class="block text-sm  text-gray-500 truncate dark:text-gray-400"><?php echo $user_data['user_email'];?></span>
+                                class="block text-sm  text-gray-500 truncate dark:text-gray-400"><?php echo $user_data['subscriber_email'];?></span>
                         </div>
                         <ul class="py-2" aria-labelledby="user-menu-button">
                             <li>
@@ -716,11 +736,11 @@ session_start();
                     </div>
 
                     <div class="flex flex-col items-center lg:items-end">
-                        <form class="mb-3 flex w-full max-w-md gap-2">
-                            <input placeholder="Email"
+                        <form class="mb-3 flex w-full max-w-md gap-2" method="post">
+                            <input placeholder="Email" name="subscriber_email"
                                 class="bg-gray-white w-full flex-1 rounded border border-gray-300 px-3 py-2 text-gray-800 placeholder-gray-400 outline-none ring-indigo-300 transition duration-100 focus:ring" />
 
-                            <button
+                            <button type="submit"
                                 class="inline-block rounded bg-indigo-500 px-8 py-2 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Send</button>
                         </form>
 
